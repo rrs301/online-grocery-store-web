@@ -2,7 +2,8 @@
 import GlobalApi from '@/app/_utils/GlobalApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useCookies } from 'next-client-cookies';
+import { setCookie } from 'cookies-next'
+// import { useCookies } from 'next-client-cookies';
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -15,12 +16,12 @@ function CreateAccount() {
     const [password,setPassword]=useState();
     const router=useRouter();
     const [loader,setLoader]=useState();
-    const cookies = useCookies();
+    // const cookies = useCookies();
 
 
     useEffect(()=>{
         
-        const jwt=cookies.set('jwt');
+        const jwt=setCookie('jwt');
         if(jwt)
         {
             router.push('/')
@@ -29,10 +30,8 @@ function CreateAccount() {
     const onCreateAccount=()=>{
         setLoader(true)
         GlobalApi.registerUser(username,email,password).then(resp=>{
-            console.log(resp.data.user)
-            console.log(resp.data.jwt)
-            cookies.set('user',JSON.stringify(resp.data.user));
-            cookies.set('jwt',resp.data.jwt);
+            setCookie('user',JSON.stringify(resp.data.user));
+            setCookie('jwt',resp.data.jwt);
             toast("Account Created Successfully")
             router.push('/');
             setLoader(false)

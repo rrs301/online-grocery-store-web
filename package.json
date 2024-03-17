@@ -17,6 +17,7 @@
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "cookies-next": "^4.1.1",
     "embla-carousel-react": "^8.0.0",
     "lucide-react": "^0.356.0",
     "moment": "^2.30.1",

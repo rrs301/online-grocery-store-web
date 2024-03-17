@@ -9,12 +9,13 @@ import {
   } from "@/components/ui/collapsible"
 import moment from 'moment';
 import MyOrderItem from './_components/MyOrderItem';
-import { useCookies } from 'next-client-cookies';
+import { getCookie } from 'cookies-next';
+// import { useCookies } from 'next-client-cookies';
   
 function MyOrder() {
-  const cookies = useCookies();
-    const jwt=cookies.get('jwt');
-    const user=JSON.parse(cookies.get('user'));
+  // const cookies = useCookies();
+    const jwt=getCookie('jwt');
+    const user=JSON.parse(getCookie('user'));
     const router=useRouter();
     const [orderList,setOrderList]=useState([]);
     useEffect(()=>{

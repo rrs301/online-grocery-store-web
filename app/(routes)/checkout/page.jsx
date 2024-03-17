@@ -3,16 +3,17 @@ import GlobalApi from '@/app/_utils/GlobalApi';
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { PayPalButtons } from '@paypal/react-paypal-js';
+import { getCookie } from 'cookies-next';
 import { ArrowBigRight } from 'lucide-react'
-import { useCookies } from 'next-client-cookies';
+// import { useCookies } from 'next-client-cookies';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
 function Checkout() {
-  const cookies=useCookies()
-  const user=JSON.parse(cookies.get('user'));
-  const jwt=cookies.get('jwt');
+  // const cookies=useCookies()
+  const user=JSON.parse(getCookie('user'));
+  const jwt=getCookie('jwt');
   const [totalCartItem,setTotalCartItem]=useState(0)
   const [cartItemList,setCartItemList]=useState([]);
   const [subtotal,setSubTotal]=useState(0);

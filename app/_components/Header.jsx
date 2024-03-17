@@ -26,15 +26,16 @@ import {
   } from "@/components/ui/sheet"
 import CartItemList from './CartItemList'
 import { toast } from 'sonner'
-import { useCookies } from 'next-client-cookies'
+import { deleteCookie, getCookie } from 'cookies-next'
+// import { useCookies } from 'next-client-cookies'
   
 function Header() {
-    const cookies = useCookies();
+    // const cookies = useCookies();
 
     const [categoryList,setCategoryList]=useState([]);
-    const isLogin=cookies.get('jwt')?true:false;
-    const user=JSON.parse(cookies.get('user'));
-    const jwt=cookies.get('jwt');
+    const isLogin=getCookie('jwt')?true:false;
+    const user=JSON.parse(getCookie('user'));
+    const jwt=getCookie('jwt');
     const [totalCartItem,setTotalCartItem]=useState(0)
     const {updateCart,setUpdateCart}=useContext(UpdateCartContext)
     const [cartItemList,setCartItemList]=useState([]);
@@ -67,7 +68,9 @@ function Header() {
     }
 
     const onSignOut=()=>{
-        cookies.remove();
+        deleteCookie('jwt')
+        deleteCookie('user')
+
         router.push('/sign-in');
     }
 

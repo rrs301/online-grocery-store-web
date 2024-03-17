@@ -2,8 +2,9 @@
 import GlobalApi from '@/app/_utils/GlobalApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { getCookie, setCookie } from 'cookies-next'
 import { LoaderIcon } from 'lucide-react'
-import { useCookies } from 'next-client-cookies'
+// import { useCookies } from 'next-client-cookies'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -15,10 +16,10 @@ function SignIn() {
     const [email,setEmail]=useState();
     const router=useRouter();
     const [loader,setLoader]=useState();
-    const cookies = useCookies();
+    // const cookies = useCookies();
 
     useEffect(()=>{
-        const jwt=cookies.get('jwt');
+        const jwt=getCookie('jwt');
         if(jwt)
         {
             router.push('/')
@@ -28,8 +29,8 @@ function SignIn() {
     const onSignIn=()=>{
         setLoader(true)
         GlobalApi.SignIn(email,password).then(resp=>{
-            cookies.set('user',JSON.stringify(resp.data.user));
-            cookies.set('jwt',resp.data.jwt);
+            setCookie('user',JSON.stringify(resp.data.user));
+            setCookie('jwt',resp.data.jwt);
             toast("Login Successfully")
             router.push('/');
             setLoader(false)

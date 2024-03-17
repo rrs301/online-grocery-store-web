@@ -6,7 +6,7 @@ function MyOrderItem({orderItem}) {
     <div className='w-[60%]'>
     
     <div className='grid grid-cols-5  mt-3 items-center'>
-        <Image src={ process.env.NEXT_PUBLIC_BACKEND_BASE_URL+orderItem.product.data.attributes.images.data[0].attributes.url}
+        <Image src={orderItem.product.data.attributes.images.data[0].attributes.url}
         width={80}
         height={80}
         alt='image'

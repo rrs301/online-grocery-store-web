@@ -14,7 +14,7 @@ function TopCategoryList({categoryList,selectedCategory}) {
                 w-[150px] min-w-[100px]
                 ${selectedCategory==category.attributes.name&&'bg-green-600 text-white'}
                 `}>
-                    <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL+category.attributes.icon.data.attributes.url}
+                    <Image src={category.attributes.icon.data.attributes.url}
                     width={50}
                     height={50}
                     alt='icon'

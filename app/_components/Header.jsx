@@ -26,13 +26,15 @@ import {
   } from "@/components/ui/sheet"
 import CartItemList from './CartItemList'
 import { toast } from 'sonner'
+import { useCookies } from 'next-client-cookies'
   
 function Header() {
+    const cookies = useCookies();
 
     const [categoryList,setCategoryList]=useState([]);
-    const isLogin=sessionStorage.getItem('jwt')?true:false;
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    const jwt=sessionStorage.getItem('jwt');
+    const isLogin=cookies.get('jwt')?true:false;
+    const user=JSON.parse(cookies.get('user'));
+    const jwt=cookies.get('jwt');
     const [totalCartItem,setTotalCartItem]=useState(0)
     const {updateCart,setUpdateCart}=useContext(UpdateCartContext)
     const [cartItemList,setCartItemList]=useState([]);
@@ -58,14 +60,14 @@ function Header() {
      * Used to get Total Cart Item
      */
     const getCartItems=async()=>{
-        const cartItemList_=await GlobalApi.getCartItems(user.id,jwt);
+        const cartItemList_=await GlobalApi.getCartItems(user?.id,jwt);
         console.log(cartItemList_);
         setTotalCartItem(cartItemList_?.length);
         setCartItemList(cartItemList_);
     }
 
     const onSignOut=()=>{
-        sessionStorage.clear();
+        cookies.remove();
         router.push('/sign-in');
     }
 

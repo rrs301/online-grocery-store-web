@@ -4,14 +4,15 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { ArrowBigRight } from 'lucide-react'
+import { useCookies } from 'next-client-cookies';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
 function Checkout() {
-
-  const user=JSON.parse(sessionStorage.getItem('user'));
-  const jwt=sessionStorage.getItem('jwt');
+  const cookies=useCookies()
+  const user=JSON.parse(cookies.get('user'));
+  const jwt=cookies.get('jwt');
   const [totalCartItem,setTotalCartItem]=useState(0)
   const [cartItemList,setCartItemList]=useState([]);
   const [subtotal,setSubTotal]=useState(0);
@@ -38,7 +39,7 @@ function Checkout() {
      * Used to get Total Cart Item
      */
    const getCartItems=async()=>{
-    const cartItemList_=await GlobalApi.getCartItems(user.id,jwt);
+    const cartItemList_=await GlobalApi.getCartItems(user?.id,jwt);
     console.log(cartItemList_);
     setTotalCartItem(cartItemList_?.length);
     setCartItemList(cartItemList_);

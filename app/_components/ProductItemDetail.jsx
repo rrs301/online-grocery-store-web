@@ -7,11 +7,13 @@ import React, { useContext, useState } from 'react'
 import GlobalApi from '../_utils/GlobalApi'
 import { toast } from 'sonner'
 import { UpdateCartContext } from '../_context/UpdateCartContext'
+import { useCookies } from 'next-client-cookies'
 
 function ProductItemDetail({product}) {
+    const cookies = useCookies();
 
-    const jwt=sessionStorage.getItem('jwt');
-    const user=JSON.parse(sessionStorage.getItem('user'));
+    const jwt=cookies.get('jwt');
+    const user=JSON.parse(cookies.get('user'));
     const {updateCart,setUpdateCart}=useContext(UpdateCartContext)
     const [productTotalPrice,setProductTotalPrice]=useState(
         product.attributes.sellingPrice?

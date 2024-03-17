@@ -34,7 +34,11 @@ function Header() {
 
     const [categoryList,setCategoryList]=useState([]);
     const isLogin=getCookie('jwt')?true:false;
-    const user=JSON.parse(getCookie('user'));
+    let user=''
+    try
+    {
+        user=JSON.parse(getCookie('user'));
+    }catch(e){}
     const jwt=getCookie('jwt');
     const [totalCartItem,setTotalCartItem]=useState(0)
     const {updateCart,setUpdateCart}=useContext(UpdateCartContext)

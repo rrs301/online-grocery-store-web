@@ -15,7 +15,11 @@ import { getCookie } from 'cookies-next';
 function MyOrder() {
   // const cookies = useCookies();
     const jwt=getCookie('jwt');
-    const user=JSON.parse(getCookie('user'));
+    let user=''
+    try
+    {
+        user=JSON.parse(getCookie('user'));
+    }catch(e){}
     const router=useRouter();
     const [orderList,setOrderList]=useState([]);
     useEffect(()=>{

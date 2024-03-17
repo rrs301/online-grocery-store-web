@@ -12,7 +12,11 @@ import { toast } from 'sonner';
 
 function Checkout() {
   // const cookies=useCookies()
-  const user=JSON.parse(getCookie('user'));
+  let user='';
+  try
+  {
+      user=JSON.parse(getCookie('user'));
+  }catch(e){}
   const jwt=getCookie('jwt');
   const [totalCartItem,setTotalCartItem]=useState(0)
   const [cartItemList,setCartItemList]=useState([]);

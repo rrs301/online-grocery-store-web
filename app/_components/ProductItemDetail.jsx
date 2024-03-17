@@ -14,7 +14,11 @@ function ProductItemDetail({product}) {
     // const cookies = useCookies();
 
     const jwt=getCookie('jwt');
-    const user=JSON.parse(getCookie('user'));
+    let user=''
+    try
+    {
+        user=JSON.parse(getCookie('user'));
+    }catch(e){}
     const {updateCart,setUpdateCart}=useContext(UpdateCartContext)
     const [productTotalPrice,setProductTotalPrice]=useState(
         product.attributes.sellingPrice?

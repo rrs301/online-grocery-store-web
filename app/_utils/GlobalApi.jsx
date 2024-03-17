@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 const axiosClient=axios.create({
-    baseURL:'http://192.168.0.218:1337/api'
+    baseURL:process.env.NEXT_PUBLIC_BACKEND_BASE_URL+'/api'
 })
 
 

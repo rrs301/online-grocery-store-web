@@ -15,7 +15,7 @@ function CategoryList({categoryList}) {
                 hover:bg-green-600
                 
                 '>
-                    <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL+category.attributes.icon.data.attributes.url}
+                    <Image src={category?.attributes?.icon?.data?.attributes?.url}
                     width={50}
                     height={50}
                     alt='icon'

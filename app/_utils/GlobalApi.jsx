@@ -1,17 +1,17 @@
 const { default: axios } = require("axios");
 
 const axiosClient=axios.create({
-    baseURL:process.env.NEXT_PUBLIC_BACKEND_BASE_URL+'/api'
+    baseURL:'https://online-grocery-store-strapi-cms.onrender.com/api'
 })
 
 
-const getCategory=()=>axiosClient.get('/categories?populate=*');
+const getCategory=()=>axiosClient.get('/categories?sort[0]=id:asc&populate=*');
 
 const getSliders=()=>axiosClient.get('/sliders?populate=*').then(resp=>{
     return resp.data.data
 })
 
-const getCategoryList=()=>axiosClient.get('/categories?populate=*').then(resp=>{
+const getCategoryList=()=>axiosClient.get('/categories?sort[0]=id:asc&populate=*').then(resp=>{
     return resp.data.data;
 })
 

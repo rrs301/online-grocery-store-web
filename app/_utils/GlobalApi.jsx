@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 const axiosClient=axios.create({
-    baseURL:'https://online-grocery-store-strapi-cms.onrender.com/api'
+    baseURL:process.env.NEXT_PUBLIC_BACKEND_BASE_URL
 })
 
 
